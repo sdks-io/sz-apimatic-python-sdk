@@ -30,7 +30,7 @@ class BaseApi(object):
     @staticmethod
     def user_agent():
         """Return UserAgent value."""
-        return "Python-SDK/0.0.1 (OS: {os-info}, Engine: {engine}/{engine-version})"
+        return "Python-SDK/0.0.2 (OS: {os-info}, Engine: {engine}/{engine-version})"
 
     @staticmethod
     def user_agent_parameters():

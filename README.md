@@ -11,15 +11,15 @@ The package is compatible with Python versions `3.7+`.
 Install the package from PyPi using the following pip command:
 
 ```bash
-pip install sz-apimatic-sdk==0.0.1
+pip install stz-apimatic-sdk==0.0.2
 ```
 
 You can also view the package at:
-https://pypi.python.org/pypi/sz-apimatic-sdk/0.0.1
+https://pypi.python.org/pypi/stz-apimatic-sdk/0.0.2
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -33,9 +33,9 @@ The following parameters are configurable for the API Client:
 | backoff_factor | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
 | retry_statuses | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
 | retry_methods | `Array of string` | The http methods on which retry is to be done. <br> **Default: ["GET", "PUT"]** |
-| proxy_settings | [`ProxySettings`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/proxy-settings.md) | Optional proxy configuration to route HTTP requests through a proxy server. |
-| logging_configuration | [`LoggingConfiguration`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/logging-configuration.md) | The SDK logging configuration for API calls |
-| custom_header_authentication_credentials | [`CustomHeaderAuthenticationCredentials`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/auth/custom-header-signature.md) | The credential object for Custom Header Signature |
+| proxy_settings | [`ProxySettings`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/proxy-settings.md) | Optional proxy configuration to route HTTP requests through a proxy server. |
+| logging_configuration | [`LoggingConfiguration`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/logging-configuration.md) | The SDK logging configuration for API calls |
+| custom_header_authentication_credentials | [`CustomHeaderAuthenticationCredentials`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/auth/custom-header-signature.md) | The credential object for Custom Header Signature |
 
 The API client can be initialized as follows:
 
@@ -77,45 +77,45 @@ from seltzapi.seltzapi_client import SeltzapiClient
 client = SeltzapiClient.from_environment(dotenv_path='/path/to/.env')
 ```
 
-See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/environment-based-client-initialization.md) section for details.
+See the [Environment-Based Client Initialization](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/environment-based-client-initialization.md) section for details.
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`ApiKeyAuth (Custom Header Signature)`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/auth/custom-header-signature.md)
+* [`ApiKeyAuth (Custom Header Signature)`](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/auth/custom-header-signature.md)
 
 ## List of APIs
 
-* [Search](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/search.md)
-* [Answer](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/answer.md)
-* [Monitors](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/monitors.md)
-* [Records](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/records.md)
-* [Runs](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/runs.md)
-* [Agent](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/agent.md)
-* [Fetch](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/controllers/fetch.md)
+* [Search](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/search.md)
+* [Answer](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/answer.md)
+* [Monitors](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/monitors.md)
+* [Records](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/records.md)
+* [Runs](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/runs.md)
+* [Agent](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/agent.md)
+* [Fetch](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/controllers/fetch.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [ProxySettings](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/proxy-settings.md)
-* [Environment-Based Client Initialization](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/environment-based-client-initialization.md)
-* [AbstractLogger](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/abstract-logger.md)
-* [LoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/logging-configuration.md)
-* [RequestLoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/request-logging-configuration.md)
-* [ResponseLoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/response-logging-configuration.md)
+* [ProxySettings](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/proxy-settings.md)
+* [Environment-Based Client Initialization](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/environment-based-client-initialization.md)
+* [AbstractLogger](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/abstract-logger.md)
+* [LoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/logging-configuration.md)
+* [RequestLoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/request-logging-configuration.md)
+* [ResponseLoggingConfiguration](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/response-logging-configuration.md)
 
 ### HTTP
 
-* [HttpResponse](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/http-response.md)
-* [HttpRequest](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/http-request.md)
+* [HttpResponse](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/http-response.md)
+* [HttpRequest](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/http-request.md)
 
 ### Utilities
 
-* [ApiResponse](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/api-response.md)
-* [ApiHelper](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/api-helper.md)
-* [HttpDateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/http-date-time.md)
-* [RFC3339DateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/rfc3339-date-time.md)
-* [UnixDateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.1/doc/unix-date-time.md)
+* [ApiResponse](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/api-response.md)
+* [ApiHelper](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/api-helper.md)
+* [HttpDateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/http-date-time.md)
+* [RFC3339DateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/rfc3339-date-time.md)
+* [UnixDateTime](https://www.github.com/sdks-io/sz-apimatic-python-sdk/tree/0.0.2/doc/unix-date-time.md)
 
