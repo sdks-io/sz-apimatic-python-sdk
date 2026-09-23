@@ -1,25 +1,95 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
 [project]
 name = "stz-apimatic-sdk"
+version = "1.9.0"
 description = "Sample SDKs for SZ by APIMatic"
-version = "0.0.2"
+authors = [
+    { name = "Muhammad Rafay", email = "muhammad.rafay@apimatic.io" },
+]
+maintainers = [
+    { name = "APIMatic", email = "support@apimatic.io" },
+]
+keywords = ["sdk", "api-client", "openapi", "rest", "http", "apimatic"]
+license = "MIT"                 # SPDX expression (PEP 639); poetry-core bundles the root LICENSE
 readme = "README.md"
-keywords = []
-dependencies = ["apimatic-core~=0.2.0, >= 0.2.24", "apimatic-core-interfaces~=0.1.0, >= 0.1.8", "apimatic-requests-client-adapter~=0.1.0, >= 0.1.10", "python-dotenv>=0.21, <2.0"]
-classifiers = []
-requires-python = ">=3.7"
-[[project.authors]]
-name = "Muhammad Rafay"
-email = "muhammad.rafay@apimatic.io"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx (>=0.28.1,<1.0.0)",
+    # 2.11 added the alias-control `model_config` keys core/models.py names --
+    # validate_by_name, validate_by_alias and serialize_by_alias. No 2.12-only pydantic API
+    # is used anywhere.
+    "pydantic[email] (>=2.11.0,<3.0.0)",
+    # NotRequired / TypedDict backport for the 3.10 floor (both live in `typing` from 3.11),
+    # used by the model input companions; and TypeForm (PEP 747, added in 4.13.0), which
+    # core/ uses to type the runtime type expressions its factories accept. PEP 747 is Final
+    # and TypeForm reaches `typing` in 3.15, so both move when the floor does.
+    "typing-extensions (>=4.13.0,<5.0.0)",
+]
 
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# Must stay below every bare [project] key -- a sub-table header captures whatever follows it.
 [project.urls]
 Documentation = "https://docs.seltz.ai/"
-[project.optional-dependencies]
-testutils = ["pytest>=7.2.2"]
-[tool]
-[tool.setuptools]
-[tool.setuptools.packages]
-[tool.setuptools.packages.find]
-exclude = ["tests", "tests.*"]
+
+[dependency-groups]
+dev = [
+    # 2.2 is where PEP 747 TypeForm became default-on; below it, core/'s signatures need an
+    # --enable-incomplete-feature flag.
+    "mypy (>=2.2.0,<3.0.0)",
+    "ruff (>=0.14.14,<0.15.0)",
+]
+
+
+[build-system]
+# 2.2.0 is the first release that understands PEP 639 -- below it the backend emits the
+# deprecated `License:` field, re-adds the license classifier and drops `:: 3.14`.
+requires = ["poetry-core>=2.2.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+packages = [{ include = "seltz_api" }]
+
+
+[tool.ruff]
+# target-version is inferred from requires-python -- the floor is single-sourced there
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "RUF"]
+# Deliberately excluded:
+#   TC  - would move pydantic-validated imports under TYPE_CHECKING, breaking the
+#         runtime annotation resolution that pydantic depends on
+#   Q   - the CI-gated formatter normalizes quotes everywhere it runs
+ignore = [
+    # Typographic punctuation flagged as confusable. Every docstring here is the spec
+    # author's own description, copied verbatim -- normalizing their apostrophes and
+    # dashes would silently alter the API's documentation.
+    "RUF001", "RUF002", "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["RUF022"]   # curated, grouped __all__
+
+[tool.mypy]
+python_version = "3.10"         # the supported floor, not whichever interpreter is local
+files = ["seltz_api"]
+strict = true
+warn_unreachable = true
+enable_error_code = ["redundant-expr", "truthy-bool", "ignore-without-code", "possibly-undefined"]
+# already inside `strict` at mypy 2.3, pinned deliberately: `strict`'s flag set is versioned
+# and the dev floor spans >=2.2.0,<3.0.0
+warn_return_any = true
+pretty = true
